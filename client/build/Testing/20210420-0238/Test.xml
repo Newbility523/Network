@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="Linux-c++"
+	BuildStamp="20210420-0238-Experimental"
+	Name="SKY-20210220VZQ"
+	Generator="ctest-3.16.3"
+	CompilerName="/usr/bin/c++"
+	CompilerVersion="9.3.0"
+	OSName="Linux"
+	Hostname="SKY-20210220VZQ"
+	OSRelease="4.4.0-18362-Microsoft"
+	OSVersion="#1049-Microsoft Thu Aug 14 12:01:00 PST 2020"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="158"
+	ProcessorCacheSize="256"
+	NumberOfLogicalCPU="6"
+	NumberOfPhysicalCPU="6"
+	TotalVirtualMemory="49152"
+	TotalPhysicalMemory="16242"
+	LogicalProcessorsPerPhysical="1"
+	ProcessorClockFrequency="3000"
+	>
+	<Testing>
+		<StartDateTime>Apr 20 10:38 CST</StartDateTime>
+		<StartTestTime>1618886286</StartTestTime>
+		<TestList/>
+		<EndDateTime>Apr 20 10:38 CST</EndDateTime>
+		<EndTestTime>1618886286</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

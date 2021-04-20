@@ -1,0 +1,5 @@
+/home/carl/network/client/build/CMakeFiles/edit_cache.dir
+/home/carl/network/client/build/CMakeFiles/package_source.dir
+/home/carl/network/client/build/CMakeFiles/rebuild_cache.dir
+/home/carl/network/client/build/CMakeFiles/package.dir
+/home/carl/network/client/build/CMakeFiles/client.dir
