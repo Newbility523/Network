@@ -290,7 +290,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-server-Debug-6f62c3495698de8b560e.json",
+					"jsonFile" : "target-server-Debug-974ac3f084f43d5c17df.json",
 					"name" : "server",
 					"projectIndex" : 0
 				}
@@ -300,8 +300,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/carl/server/build",
-		"source" : "/home/carl/server"
+		"build" : "/home/carl/network/server/build",
+		"source" : "/home/carl/network/server"
 	},
 	"version" : 
 	{

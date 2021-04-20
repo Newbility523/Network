@@ -1,7 +1,7 @@
 [
 {
-  "directory": "/home/carl/server/build",
-  "command": "/bin/c++      -o CMakeFiles/server.dir/main.cpp.o -c /home/carl/server/main.cpp",
-  "file": "/home/carl/server/main.cpp"
+  "directory": "/home/carl/network/server/build",
+  "command": "/usr/bin/c++    -g   -o CMakeFiles/server.dir/main.cpp.o -c /home/carl/network/server/main.cpp",
+  "file": "/home/carl/network/server/main.cpp"
 }
 ]

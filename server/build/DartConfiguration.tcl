@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/carl/server
-BuildDirectory: /home/carl/server/build
+SourceDirectory: /home/carl/network/server
+BuildDirectory: /home/carl/network/server/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -26,7 +26,7 @@ SubmitURL: http://
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/carl/server"
+ConfigureCommand: "/usr/bin/cmake" "/home/carl/network/server"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 
@@ -62,7 +62,7 @@ UpdateOptions:
 UpdateType: 
 
 # Compiler info
-Compiler: /bin/c++
+Compiler: /usr/bin/c++
 CompilerVersion: 9.3.0
 
 # Dynamic analysis (MemCheck)

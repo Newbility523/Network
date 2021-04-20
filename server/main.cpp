@@ -7,11 +7,14 @@
 #include <sys/socket.h>
 #include <iostream>
 
+#define BUFFER_SIZE 1024
+
 using namespace std;
 
 void ErrorHandling(string s)
 {
     cout << s << endl;
+    exit(1);
 }
 
 int main(int argc, char* argv[]) 
@@ -24,7 +27,7 @@ int main(int argc, char* argv[])
 
     socklen_t client_addr_size;
 
-    string messages = "Hello world!";
+    char messages[BUFFER_SIZE];
 
     // 如何求指针数组长度
 
@@ -52,16 +55,32 @@ int main(int argc, char* argv[])
     }
 
     client_addr_size = sizeof(client_addr);
-    client_sock = accept(server_sock, (sockaddr*) &client_addr, &client_addr_size);
 
-    if (client_sock == -1)
+    int strLen = 0;
+
+    for (int i = 0; i < 5; ++i)
     {
-        ErrorHandling("accept() error");
+        client_sock = accept(server_sock, (sockaddr*) &client_addr, &client_addr_size);
+        if (client_sock == -1)
+        {
+            ErrorHandling("accept() error");
+        }
+        else
+        {
+            cout << "connect success client id : " << i << endl;
+        }
+
+        while ((strLen = read(client_sock, messages, BUFFER_SIZE)) != 0)
+        {
+            cout << "looping strLen = " << strLen << endl;
+            write(client_sock, messages, strLen);
+            // two write for test
+            write(client_sock, messages, strLen);
+        }
+
+        close(client_sock);
     }
 
-    char bufferMessage[] = "Helle world lalala!";
-    write(client_sock, bufferMessage, sizeof(bufferMessage));
-    close(client_sock);
     close(server_sock);
 
     return 0;

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/carl/server
+CMAKE_SOURCE_DIR = /home/carl/network/server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/carl/server/build
+CMAKE_BINARY_DIR = /home/carl/network/server/build
 
 # Utility rule file for ContinuousStart.
 
@@ -71,6 +71,6 @@ CMakeFiles/ContinuousStart.dir/clean:
 .PHONY : CMakeFiles/ContinuousStart.dir/clean
 
 CMakeFiles/ContinuousStart.dir/depend:
-	cd /home/carl/server/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/carl/server /home/carl/server /home/carl/server/build /home/carl/server/build /home/carl/server/build/CMakeFiles/ContinuousStart.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/carl/network/server/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/carl/network/server /home/carl/network/server /home/carl/network/server/build /home/carl/network/server/build /home/carl/network/server/build/CMakeFiles/ContinuousStart.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ContinuousStart.dir/depend
 

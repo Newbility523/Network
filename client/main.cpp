@@ -7,11 +7,14 @@
 #include <sys/socket.h>
 #include <iostream>
 
+#define BUFFER_SIZE 1024
+
 using namespace std;
 
 void ErrorHandling(string s)
 {
     cout << s << endl;
+    exit(1);
 }
 
 int main(int argc, char* argv[]) 
@@ -47,22 +50,46 @@ int main(int argc, char* argv[])
     {
         ErrorHandling("connect() error!");
     }
+    else
+    {
+        cout << "connect success" << endl;
+    }
 
     int read_len = 0;
     int index = 0;
-    while (read_len = read(sock, &message[index++], 1))
+
+    int sendLen = 0;
+    int recvCount = 0;
+
+    while (true)
     {
-        if (read_len == -1)
+        fputs("input message(Q to quit):", stdout);
+        fgets(message, BUFFER_SIZE, stdin);
+
+        if (!strcmp(message, "q\n") || !strcmp(message, "Q\n"))
         {
-            ErrorHandling("read() error");
-            return -1;
+            break;
         }
 
-        str_len += read_len;
+        sendLen = write(sock, message, strlen(message));
+        while (read_len < sendLen)
+        {
+            recvCount = read(sock, &message[read_len], BUFFER_SIZE - 1);
+            if (recvCount == -1)
+            {
+                ErrorHandling("read() error!");
+            }
+            else
+            {
+                read_len += recvCount;
+            }
+        }
+
+        message[read_len] = 0;
+
+        printf("Get Message from server : %s", message);
     }
 
-    printf("Message from server: %s \n", message);
-    printf("count: %d \n", str_len);
     close(sock);
 
     return 0;
