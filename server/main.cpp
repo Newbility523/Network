@@ -56,31 +56,34 @@ int main(int argc, char* argv[])
 
     client_addr_size = sizeof(client_addr);
 
-    int strLen = 0;
 
-    for (int i = 0; i < 5; ++i)
+    client_sock = accept(server_sock, (sockaddr*) &client_addr, &client_addr_size);
+    if (client_sock == -1)
     {
-        client_sock = accept(server_sock, (sockaddr*) &client_addr, &client_addr_size);
-        if (client_sock == -1)
-        {
-            ErrorHandling("accept() error");
-        }
-        else
-        {
-            cout << "connect success client id : " << i << endl;
-        }
-
-        while ((strLen = read(client_sock, messages, BUFFER_SIZE)) != 0)
-        {
-            cout << "looping strLen = " << strLen << endl;
-            write(client_sock, messages, strLen);
-            // two write for test
-            write(client_sock, messages, strLen);
-        }
-
-        close(client_sock);
+        ErrorHandling("accept() error");
     }
 
+    int total = 0;
+    int curLen = 0;
+    int operandNum = 0;
+    read(client_sock, &operandNum, 1);
+    cout << "receive operandNum" << operandNum << endl;
+    // while ()
+
+    // while ((curLen = read(client_sock, &messages[total], BUFFER_SIZE)) != EOF)
+    // {
+    //     total += curLen;
+    // }
+
+    curLen = read(client_sock, &messages[total], BUFFER_SIZE);
+    cout << "receive finish, total " << curLen << " byte" << endl;
+    curLen = read(client_sock, &messages[total], BUFFER_SIZE);
+    cout << "receive finish2, total " << curLen << " byte" << endl;
+
+    int result = 0;
+    write(client_sock, &result, sizeof(result));
+
+    close(client_sock);
     close(server_sock);
 
     return 0;

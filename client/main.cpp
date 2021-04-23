@@ -8,7 +8,8 @@
 #include <iostream>
 
 #define BUFFER_SIZE 1024
-
+#define OPSZ 4
+#define RESULT_SIZE 4
 using namespace std;
 
 void ErrorHandling(string s)
@@ -21,7 +22,7 @@ int main(int argc, char* argv[])
 {
     int sock;
     sockaddr_in server_addr;
-    char message[30];
+    int result = 0;
     int str_len = 0;
 
     if (argc != 3)
@@ -39,10 +40,6 @@ int main(int argc, char* argv[])
     memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
 
-    // 127.0.0.1 9190
-    // server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-    // server_addr.sin_port = htons(atoi("9190"));
-
     server_addr.sin_addr.s_addr = inet_addr(argv[1]);
     server_addr.sin_port = htons(atoi(argv[2]));
 
@@ -55,42 +52,38 @@ int main(int argc, char* argv[])
         cout << "connect success" << endl;
     }
 
-    int read_len = 0;
-    int index = 0;
+    int operandCount = 0;
 
-    int sendLen = 0;
-    int recvCount = 0;
+    cout << "input operand num:";
+    cin >> operandCount;
 
-    while (true)
+    // 头字节   操作数量 int
+    // 中段     int 操作 N 个
+    // 尾字节   操作符 char
+    unsigned char* opmsg = new unsigned char[operandCount * OPSZ + 2];
+
+    opmsg[0] = operandCount;
+
+    int temp;
+    for (int i = 0; i < operandCount; ++i)
     {
-        fputs("input message(Q to quit):", stdout);
-        fgets(message, BUFFER_SIZE, stdin);
-
-        if (!strcmp(message, "q\n") || !strcmp(message, "Q\n"))
-        {
-            break;
-        }
-
-        sendLen = write(sock, message, strlen(message));
-        while (read_len < sendLen)
-        {
-            recvCount = read(sock, &message[read_len], BUFFER_SIZE - 1);
-            if (recvCount == -1)
-            {
-                ErrorHandling("read() error!");
-            }
-            else
-            {
-                read_len += recvCount;
-            }
-        }
-
-        message[read_len] = 0;
-
-        printf("Get Message from server : %s", message);
+        cout << "input num." << i + 1 << ": ";
+        cin >> temp;
+        *(int*)(opmsg + i * OPSZ + 1) = temp;
     }
 
+    char operation;
+    cout << "operation: ";
+    cin >> operation;
+    opmsg[operation * OPSZ + 1];
+
+    write(sock, opmsg, operandCount * OPSZ + 2);
+    read(sock, &result, OPSZ);
+
+    cout << "Get result from server: " << result << endl;
     close(sock);
+
+    delete[] opmsg;
 
     return 0;
 }
